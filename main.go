@@ -123,11 +123,40 @@ func Slices() {
 
 }
 
+func Maps() {
+	// Declare a map string => int
+	m := make(map[string]int)
+	// Initialize/Set some values
+	m["k1"] = 1
+	m["k2"] = 2
+	fmt.Println("map:", m)
+
+	// value, present
+	// If value was present, present is true else false
+	v1, prs1 := m["k1"]
+	fmt.Println("v1:", v1)
+	fmt.Println("prs1:", prs1)
+
+	// To delete a key,value from a map
+	delete(m, "k2")
+	fmt.Println("map:", m)
+
+	// If missing value has the zero value for int 0
+	v2, prs2 := m["k2"]
+	fmt.Println("v2:", v2)
+	fmt.Println("prs2:", prs2)
+
+	// Declare and initialize
+	n := map[string]int{"k1": 1, "k2": 2}
+	fmt.Println("n:", n)
+}
+
 func main() {
 	// ForIter()
 	// IfElseAndSwitch()
 	// Arrays()
 	// Slices()
+	// Maps()
 }
 
 //  LocalWords:  mv
