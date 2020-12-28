@@ -151,12 +151,27 @@ func Maps() {
 	fmt.Println("n:", n)
 }
 
+func Ranges() {
+	nums := []int{1, 2, 3, 4}
+	sum := 0
+	for _, num := range nums {
+		sum += num
+	}
+	fmt.Println("sum:", sum)
+
+	m := map[string]string{"k1": "1", "k2": "2"}
+	for k, v := range m {
+		fmt.Printf("%s -> %s\n", k, v)
+	}
+}
+
 func main() {
 	// ForIter()
 	// IfElseAndSwitch()
 	// Arrays()
 	// Slices()
 	// Maps()
+	Ranges()
 }
 
 //  LocalWords:  mv
