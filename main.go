@@ -165,14 +165,24 @@ func Ranges() {
 	}
 }
 
-func add(a, b, c int, s string) int {
+func Add(a, b, c int, s string) int {
 	fmt.Println(s)
 	return a + b + c
 }
 
+func AddMulti(a, b, c int, s string) (int, string) {
+	return a + b + c, s
+}
+
 func Functions() {
-	result := add(1, 2, 3, "add called")
+	// Simple function
+	result := Add(1, 2, 3, "Add called")
 	fmt.Println(result)
+
+	// Function with multiple return values
+	r, s := AddMulti(1, 2, 3, "AddMulti called")
+	fmt.Println("r: ", r, " s: ", s)
+
 }
 
 func main() {
@@ -182,7 +192,8 @@ func main() {
 	// Slices()
 	// Maps()
 	// Ranges()
-	// Functions()
+	Functions()
+
 }
 
 //  LocalWords:  mv
