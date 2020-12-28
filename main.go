@@ -1,14 +1,19 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
-// Hello function returns a hardcoded value
-func Hello() string {
-	return "hello mv"
+// Hello function returns a "Hello arg"
+func Hello(arg int) string {
+	return "hello " + strconv.Itoa(arg)
 }
 
 func main() {
-	fmt.Println(Hello())
+	for i := 0; i < 10; i++{
+		fmt.Println(Hello(i))
+	}
 }
 
 //  LocalWords:  mv
