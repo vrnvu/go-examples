@@ -165,13 +165,24 @@ func Ranges() {
 	}
 }
 
+func add(a, b, c int, s string) int {
+	fmt.Println(s)
+	return a + b + c
+}
+
+func Functions() {
+	result := add(1, 2, 3, "add called")
+	fmt.Println(result)
+}
+
 func main() {
 	// ForIter()
 	// IfElseAndSwitch()
 	// Arrays()
 	// Slices()
 	// Maps()
-	Ranges()
+	// Ranges()
+	// Functions()
 }
 
 //  LocalWords:  mv
