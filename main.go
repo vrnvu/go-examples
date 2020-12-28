@@ -239,6 +239,71 @@ func Pointers() {
 	fmt.Println("ptr:", &i)
 }
 
+type person struct {
+	name string
+	age  int
+}
+
+func newPerson(name string) *person {
+	p := person{name: name}
+	p.age = 42
+	return &p
+}
+
+func Structs() {
+	// Various ways to construct a person
+	fmt.Println(person{"Bob", 20})
+	fmt.Println(person{name: "Alice", age: 30})
+	fmt.Println(person{name: "Fred"})
+
+	// As references
+	// & prefix yields a pointer to the struct
+	fmt.Println(&person{name: "Ann", age: 40})
+
+	// Its idiomatic to encapsulate new struct in constructor functions
+	fmt.Println(newPerson("Jon"))
+
+	s := person{name: "Sean", age: 50}
+	fmt.Println(s.name)
+	fmt.Println(s.age)
+
+	// Structs are mutable
+	// If we copy by reference we will mutate both values
+	// The pointers are automatically dereferenced
+	sp := &s
+	sp.age = 51
+	fmt.Println(sp.age)
+	fmt.Println(s.age)
+}
+
+type rect struct {
+	width, height int
+}
+
+// receiver type *rect
+func (r *rect) area() int {
+	return r.width * r.height
+}
+
+// methods can be defined either pointer or value receiver types
+func (r rect) perim() int {
+	return 2*r.width + 2*r.height
+}
+
+func Methods() {
+	r := rect{10, 5}
+
+	fmt.Println("area: ", r.area())
+	fmt.Println("perim: ", r.perim())
+
+	// Go automatically handles conversion between values and pointers for method calls
+	// You may want to use a pointer receiver type to avoid copying on methods calls
+	// Or to allow the method to mutate the receiving struct
+	rp := &r
+	fmt.Println("area: ", rp.area())
+	fmt.Println("perim: ", rp.perim())
+}
+
 func main() {
 	// ForIter()
 	// IfElseAndSwitch()
@@ -253,6 +318,8 @@ func main() {
 	// Closures()
 	// fmt.Println(RecursionFact(7))
 	// Pointers()
+	// Structs()
+	// Methods()
 
 }
 
