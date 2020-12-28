@@ -1,7 +1,9 @@
 package main
 
 import (
+	"errors"
 	"fmt"
+	"math"
 	"strconv"
 )
 
@@ -304,6 +306,91 @@ func Methods() {
 	fmt.Println("perim: ", rp.perim())
 }
 
+type geometry interface {
+	area() float64
+}
+
+type rectf64 struct {
+	width, height float64
+}
+
+type circlef64 struct {
+	radius float64
+}
+
+func (r rectf64) area() float64 {
+	return r.width * r.height
+}
+
+func (c circlef64) area() float64 {
+	return 2 * math.Pi * c.radius
+}
+
+func measure(g geometry) {
+	fmt.Println(g)
+	fmt.Println(g.area())
+}
+
+func Interfaces() {
+	// TODO how I would pass references instead of values?
+	r := rectf64{3, 4}
+	c := circlef64{5}
+	measure(r)
+	measure(c)
+}
+
+// By conventions errors are the last value and have type error
+func f1(arg int) (int, error) {
+	if arg == 42 {
+		return -1, errors.New("value was 42")
+	}
+	// A nil error indicates that there was no error
+	return arg + 3, nil
+}
+
+// Custom Error by implementing Error interface
+type argError struct {
+	arg int
+	msg string
+}
+
+func (e *argError) Error() string {
+	return fmt.Sprintf("%d - %s", e.arg, e.msg)
+}
+
+// Same function but using our custom error type
+func f2(arg int) (int, error) {
+	if arg == 42 {
+		return -1, &argError{arg, "value was 42"}
+	}
+	return arg + 3, nil
+}
+
+func Errors() {
+	for _, i := range []int{7, 42} {
+		if r, e := f1(i); e != nil {
+			fmt.Println("f1 failed:", e)
+		} else {
+			fmt.Println("f1 worked:", r)
+		}
+	}
+	// Calling f2 instead, notice e print
+	for _, i := range []int{7, 42} {
+		if r, e := f2(i); e != nil {
+			fmt.Println("f2 failed:", e)
+		} else {
+			fmt.Println("f2 worked:", r)
+		}
+	}
+
+	// To use the data inside our custom error struct
+	_, e:= f2(42)
+	if ae, ok := e.(*argError); ok {
+		fmt.Println(ae.arg)
+		fmt.Println(ae.msg)
+	}
+}
+
 func main() {
 	// ForIter()
 	// IfElseAndSwitch()
@@ -320,7 +407,8 @@ func main() {
 	// Pointers()
 	// Structs()
 	// Methods()
-
+	// Interfaces()
+	// Errors()
 }
 
 //  LocalWords:  mv
