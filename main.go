@@ -185,6 +185,39 @@ func Functions() {
 
 }
 
+func VariadicFunctions(nums ...int) {
+	fmt.Print(nums, " ")
+	total := 0
+	for _, num := range nums {
+		total += num
+	}
+	fmt.Println(total)
+}
+
+func intSeq() func() int {
+	i := 0
+	return func() int {
+		i++
+		return i
+	}
+}
+
+func Closures() {
+	nextInt := intSeq()
+
+	fmt.Println(nextInt())
+	fmt.Println(nextInt())
+	fmt.Println(nextInt())
+}
+
+func RecursionFact(n int) int{
+	if n == 0 {
+		return 1
+	}
+	return n * RecursionFact(n - 1)
+
+}
+
 func main() {
 	// ForIter()
 	// IfElseAndSwitch()
@@ -192,7 +225,12 @@ func main() {
 	// Slices()
 	// Maps()
 	// Ranges()
-	Functions()
+	// Functions()
+	// VariadicFunctions(1, 2)
+	// VariadicFunctions(1, 2, 3)
+	// VariadicFunctions([]int{1, 2, 3, 4}...)
+	// Closures()
+	// fmt.Println(RecursionFact(7))
 
 }
 
