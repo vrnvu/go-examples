@@ -39,7 +39,7 @@ func main() {
 	// Timers()
 	// Tickers()
 	// WorkerPools()
-	// WaitGroup()
+	// WaitGroups()
 	// WaitGroupsExtended()
 	// RateLimiting()
 	// AtomicCounters()
