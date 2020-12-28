@@ -210,12 +210,33 @@ func Closures() {
 	fmt.Println(nextInt())
 }
 
-func RecursionFact(n int) int{
+func RecursionFact(n int) int {
 	if n == 0 {
 		return 1
 	}
-	return n * RecursionFact(n - 1)
+	return n * RecursionFact(n-1)
 
+}
+
+func zeroval(ival int) {
+	ival = 0
+}
+
+func zeroptr(iptr *int) {
+	*iptr = 0
+}
+
+func Pointers() {
+	i := 1
+	fmt.Println("initial:", i)
+
+	zeroval(i)
+	fmt.Println("zeroval:", i)
+
+	zeroptr(&i)
+	fmt.Println("zeroptr:", i)
+
+	fmt.Println("ptr:", &i)
 }
 
 func main() {
@@ -231,6 +252,7 @@ func main() {
 	// VariadicFunctions([]int{1, 2, 3, 4}...)
 	// Closures()
 	// fmt.Println(RecursionFact(7))
+	// Pointers()
 
 }
 
