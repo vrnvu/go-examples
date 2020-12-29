@@ -374,7 +374,7 @@ func WorkerPools() {
 }
 
 func WorkerWait(id int, wg *sync.WaitGroup) {
-	// We pass our WaitGroup reference
+	// We pass our WaitGroup pointer
 	// On return we notify that we are done
 	defer wg.Done()
 	fmt.Printf("worker %d starting\n", id)
@@ -480,7 +480,7 @@ func AtomicCounters() {
 		wg.Add(1)
 		go func() {
 			for c := 0; c < 1000; c++ {
-				// atomic add with the reference & syntax
+				// atomic add with the pointer & syntax
 				atomic.AddUint64(&ops, 1)
 			}
 			wg.Done()

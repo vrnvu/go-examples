@@ -78,7 +78,7 @@ func Structs() {
 	fmt.Println(person{name: "Alice", age: 30})
 	fmt.Println(person{name: "Fred"})
 
-	// As references
+	// As pointers
 	// & prefix yields a pointer to the struct
 	fmt.Println(&person{name: "Ann", age: 40})
 
@@ -127,7 +127,7 @@ func Methods() {
 }
 
 // TODO in previous example is mentioned that a pass by value copies the struct
-// How we would work with references only? A reference to interface type?
+// How we would work with pointers only? A pointer to interface type?
 type geometry interface {
 	area() float64
 }
@@ -140,7 +140,7 @@ type circlef64 struct {
 	radius float64
 }
 
-func (r rectf64) area() float64 {
+func (r *rectf64) area() float64 {
 	return r.width * r.height
 }
 
@@ -149,15 +149,18 @@ func (c circlef64) area() float64 {
 }
 
 func measure(g geometry) {
+	fmt.Println("&g", &g)
 	fmt.Println(g)
 	fmt.Println(g.area())
 }
 
 func Interfaces() {
-	// TODO how I would pass references instead of values?
+	// TODO how I would pass pointer instead of values?
 	r := rectf64{3, 4}
 	c := circlef64{5}
-	measure(r)
+	fmt.Println("&r", &r)
+	fmt.Println("&c", &c)
+	measure(&r)
 	measure(c)
 }
 
