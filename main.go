@@ -23,7 +23,7 @@ func main() {
 	// Pointers()
 	// Structs()
 	// Methods()
-	Interfaces()
+	// Interfaces()
 	// Errors()
 	// Goroutines()
 	// Channels()
@@ -45,6 +45,13 @@ func main() {
 	// AtomicCounters()
 	// Mutexes()
 	// StatefulGoroutines()
+	// Sorting()
+	// SortingBy()
+	// Panic()
+	// CollectionFunctions()
+	// StringFunctions()
+	// StringFormatting()
+	// RegularExpressions()
 }
 
 //  LocalWords:  mv
