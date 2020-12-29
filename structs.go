@@ -31,6 +31,7 @@ func Closures() {
 	fmt.Println(nextInt())
 }
 
+// TODO compiler does TCO?
 func RecursionFact(n int) int {
 	if n == 0 {
 		return 1
@@ -125,6 +126,8 @@ func Methods() {
 	fmt.Println("perim: ", rp.perim())
 }
 
+// TODO in previous example is mentioned that a pass by value copies the struct
+// How we would work with references only? A reference to interface type?
 type geometry interface {
 	area() float64
 }

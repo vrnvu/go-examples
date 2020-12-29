@@ -192,7 +192,9 @@ func NonBlockingChannelOperations() {
 	// the channel has no buffer and there is no receiver
 	// therefore the default is selected
 	msg := "hi"
+	messages <- msg
 	select {
+	// why has no buffer at this point 
 	case messages <- msg:
 		fmt.Println("sent message", msg)
 	default:
