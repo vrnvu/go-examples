@@ -174,10 +174,15 @@ func Timeouts() {
 
 }
 
-// TODO i don't understand this case
 func NonBlockingChannelOperations() {
+	// Note this are not the same as buffered with size 1
+	// Both Channels need to be ready
 	messages := make(chan string)
 	signals := make(chan bool)
+
+	// if we executed the following the following we won't need to block both channels
+	// messages := make(chan string, 1)
+	// signals := make(chan bool, 1)
 
 	// nonblocking receive
 	select {
@@ -194,7 +199,6 @@ func NonBlockingChannelOperations() {
 	msg := "hi"
 	messages <- msg
 	select {
-	// why has no buffer at this point 
 	case messages <- msg:
 		fmt.Println("sent message", msg)
 	default:
