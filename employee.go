@@ -7,6 +7,19 @@ type Employee struct {
 	bonus  int
 }
 
+func NewEmployee(name string, salary, sales, bonus int) *Employee {
+	var e Employee
+	return newEmployee(&e, name, salary, sales, bonus)
+}
+
+func newEmployee(e *Employee, name string, salary, sales, bonus int) *Employee {
+	e.name = name
+	e.salary = salary
+	e.sales = sales
+	e.bonus = bonus
+	return e
+}
+
 const BONUS_PERCENTAGE = 10
 
 func getBonusPercentage(salary int) int {
