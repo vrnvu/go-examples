@@ -1,6 +1,9 @@
 package main
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func assert(t *testing.T, got, want int) {
 	if got != want {
@@ -21,7 +24,7 @@ var findEmployeeTests = []findEmployeeTest{
 	findEmployeeTest{8500, 3, 0, 2550},
 }
 
-var getBonusPercentageTests = []getBonusPercentageTest {
+var getBonusPercentageTests = []getBonusPercentageTest{
 	getBonusPercentageTest{100, 10},
 	getBonusPercentageTest{864, 86},
 }
@@ -36,10 +39,26 @@ func TestFindEmpoyeeBonus(t *testing.T) {
 }
 
 func TestGetBonusPercentage(t *testing.T) {
-	for _, test := range getBonusPercentageTests  {
+	for _, test := range getBonusPercentageTests {
 		got := getBonusPercentage(test.arg1)
 		want := test.expected
 		assert(t, got, want)
 	}
 }
 
+func TestFilter(t *testing.T) {
+	e0 := Employee{"e0", 5000, 5, 0}
+	e1 := Employee{"e1", 6000, 5, 0}
+	e2 := Employee{"e2", 7000, 5, 0}
+	employees := []Employee{e1, e0, e2}
+	got := Filter(employees, func(e Employee) bool {
+		return e.salary > 5500
+	})
+	want := []Employee{e2, e1}
+	// want := []Employee{e2, e0}
+	if Equals(want, got) {
+		fmt.Println("equals")
+	} else {
+		t.Errorf("got %#v, wanted %#v", got, want)
+	}
+}
