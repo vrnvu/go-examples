@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -46,6 +47,7 @@ func TestGetBonusPercentage(t *testing.T) {
 }
 
 func TestFilter(t *testing.T) {
+
 	e0 := *NewEmployee("e0", 5000, 5, 0)
 	e1 := *NewEmployee("e1", 6000, 5, 0)
 	e2 := *NewEmployee("e2", 7000, 5, 0)
@@ -56,6 +58,22 @@ func TestFilter(t *testing.T) {
 	want := []Employee{e2, e1}
 	// want := []Employee{e2, e0}
 	if !Equals(want, got) {
+		t.Errorf("got %#v, wanted %#v", got, want)
+	}
+}
+
+func TestFilterPointers(t *testing.T){
+	// Playing around with pointers in slices
+	pe0 := NewEmployee("pe0", 5000, 5, 0)
+	pe1 := NewEmployee("pe1", 6000, 5, 0)
+	pe2 := NewEmployee("pe2", 7000, 5, 0)
+	pemployees := []*Employee{pe1, pe0, pe2}
+	fmt.Println(pemployees)
+	got := FilterPointers(pemployees, func(e Employee) bool {
+		return e.salary > 5500
+	})
+	want := []*Employee{pe2, pe1}
+	if !EqualsPointers(want, got) {
 		t.Errorf("got %#v, wanted %#v", got, want)
 	}
 }

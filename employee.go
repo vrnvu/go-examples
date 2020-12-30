@@ -64,3 +64,36 @@ func Equals(xs, ys []Employee) bool {
 	return true
 
 }
+
+func FilterPointers(employees []*Employee, filter func(Employee) bool) []*Employee {
+	result := make([]*Employee, 0)
+	for _, pe := range employees {
+		e := *pe
+		if filter(e) {
+			result = append(result, pe)
+		}
+	}
+	return result
+}
+
+func EqualsPointers(xs, ys []*Employee) bool {
+
+	if len(xs) != len(ys) {
+		return false
+	}
+
+	m := make(map[string]bool)
+
+	for _, x := range xs {
+		m[(*x).name] = true
+	}
+
+	for _, y := range ys {
+		if _, exists := m[(*y).name]; !exists {
+			return false
+		}
+	}
+
+	return true
+
+}
