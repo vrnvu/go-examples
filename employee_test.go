@@ -12,13 +12,13 @@ type findEmployeeTest struct {
 	arg1, arg2, arg3, expected int
 }
 
+type getBonusPercentageTest struct {
+	arg1, expected int
+}
+
 var findEmployeeTests = []findEmployeeTest{
 	findEmployeeTest{5000, 5, 0, 2500},
 	findEmployeeTest{8500, 3, 0, 2550},
-}
-
-type getBonusPercentageTest struct {
-	arg1, expected int
 }
 
 var getBonusPercentageTests = []getBonusPercentageTest {
