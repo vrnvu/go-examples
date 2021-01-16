@@ -52,6 +52,11 @@ func main() {
 	// StringFunctions()
 	// StringFormatting()
 	// RegularExpressions()
+
+	// BroadcastPattern
+	// BroadcastPattern
+	// BadThreadBroadcastPattern()
+
 }
 
 //  LocalWords:  mv

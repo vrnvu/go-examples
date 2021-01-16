@@ -630,3 +630,77 @@ func StatefulGoroutines() {
 	// most natural
 
 }
+
+// BadThreadBroadcastPattern for is blocking the cpu
+// Active waiting
+func BadThreadBroadcastPattern() {
+	rand.Seed(time.Now().UnixNano())
+	count := 0
+	finished := 0
+	var mu sync.Mutex
+
+	for i := 0; i < 10; i++ {
+		go func() {
+			vote := rand.Float32() > 0.5
+			mu.Lock()
+			defer mu.Unlock()
+			if vote {
+				count++
+			}
+			finished++
+		}()
+	}
+
+	// BAD
+	for {
+		mu.Lock()
+		if count >= 5 || finished == 10 {
+			break
+		}
+		mu.Unlock()
+	}
+	if count >= 5 {
+		fmt.Println("win")
+	} else {
+		fmt.Println("lose")
+	}
+	mu.Unlock()
+}
+
+// CondThreadBroadcastPattern uses a cond and broadcast
+func CondThreadBroadcastPattern() {
+	rand.Seed(time.Now().UnixNano())
+	count := 0
+	finished := 0
+	var mu sync.Mutex
+	cond := sync.NewCond(&mu)
+
+	for i := 0; i < 10; i++ {
+		go func() {
+			vote := rand.Float32() > 0.5
+			mu.Lock()
+			defer mu.Unlock()
+			if vote {
+				count++
+			}
+			finished++
+			// Notice we first BROADCAST
+			// LATER WE unlock!
+			cond.Broadcast()
+		}()
+	}
+
+	// First get the lock
+	mu.Lock()
+	for count < 5 && finished != 10 {
+		// White with cond while condition unmet
+		cond.Wait()
+	}
+	// Now we own the lock from this point onwards
+	if count >= 5 {
+		fmt.Println("win")
+	} else {
+		fmt.Println("lose")
+	}
+	mu.Unlock()
+}
