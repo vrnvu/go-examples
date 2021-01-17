@@ -64,6 +64,10 @@ func main() {
 	// OneProcessor()
 	// TwoProcessor()
 	// DefaultProcessor()
+
+	// Race conditions
+	// go build -race
+	// RaceConditionDetector()
 }
 
 //  LocalWords:  mv
