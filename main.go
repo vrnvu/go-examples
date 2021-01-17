@@ -57,6 +57,8 @@ func main() {
 	// BroadcastPattern
 	// BadThreadBroadcastPattern()
 
+	// MapReduce example
+	MapReduce()
 }
 
 //  LocalWords:  mv
