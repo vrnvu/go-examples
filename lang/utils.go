@@ -1,12 +1,12 @@
-package main
+package lang
 
 import (
+	"bytes"
 	"fmt"
 	"os"
+	"regexp"
 	"sort"
 	s "strings"
-	"bytes"
-	"regexp"
 )
 
 func Sorting() {
@@ -198,4 +198,3 @@ func RegularExpressions() {
 	out := r.ReplaceAllFunc(in, bytes.ToUpper)
 	fmt.Println(string(out))
 }
-

@@ -1,9 +1,9 @@
-package main
+package lang
 
 import (
 	"errors"
-	"math"
 	"fmt"
+	"math"
 )
 
 func VariadicFunctions(nums ...int) {

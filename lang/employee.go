@@ -1,4 +1,4 @@
-package main
+package lang
 
 type Employee struct {
 	name   string

@@ -1,4 +1,4 @@
-package main
+package lang
 
 import (
 	"fmt"
@@ -62,7 +62,7 @@ func TestFilter(t *testing.T) {
 	}
 }
 
-func TestFilterPointers(t *testing.T){
+func TestFilterPointers(t *testing.T) {
 	// Playing around with pointers in slices
 	pe0 := NewEmployee("pe0", 5000, 5, 0)
 	pe1 := NewEmployee("pe1", 6000, 5, 0)
