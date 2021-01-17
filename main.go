@@ -58,7 +58,12 @@ func main() {
 	// BadThreadBroadcastPattern()
 
 	// MapReduce example
-	MapReduce()
+	// MapReduce()
+
+	// Manual logical processors for the scheduler tuning
+	// OneProcessor()
+	// TwoProcessor()
+	// DefaultProcessor()
 }
 
 //  LocalWords:  mv
