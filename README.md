@@ -1,6 +1,6 @@
 # go-examples
 
-Following [go-by-example](https://gobyexample.com)
+Main code snippets are from/adapted [go-by-example](https://gobyexample.com)
 
 ## Code structure
 
